@@ -1,0 +1,35 @@
+{
+    "name": "@pcstyle/auth-client",
+    "version": "1.0.0",
+    "description": "Authentication client SDK for pcstyle.dev ecosystem",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "bun build ./src/index.ts --outdir ./dist --target node",
+        "test": "bun test"
+    },
+    "peerDependencies": {
+        "react": ">=18.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19",
+        "typescript": "^5"
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "keywords": [
+        "pcstyle",
+        "auth",
+        "workos"
+    ],
+    "license": "MIT"
+}

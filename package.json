@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@convex-dev/workos-authkit": "^0.1.5",
+    "@workos-inc/authkit-nextjs": "^2.13.0",
+    "convex": "^1.31.4",
     "framer-motion": "^12.24.10",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",

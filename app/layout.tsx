@@ -12,8 +12,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NEXT_TEMPLATE // PCSTYLE",
-  description: "Cybernetic starter template with Next.js, Tailwind v4, and Convex",
+  title: "AUTH // PCSTYLE.DEV",
+  description: "Centralized authentication for the pcstyle.dev ecosystem",
   icons: {
     icon: "/favicon.ico",
   },
