@@ -1,0 +1,66 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "Next.js 16 (App Router)",
+        "React 19",
+        "WorkOS AuthKit",
+        "Convex (real-time database)",
+        "Tailwind CSS v4",
+        "Framer Motion"
+    ],
+    "features": [
+        {
+            "name": "Login Page",
+            "description": "Cybernetic-styled login UI with Sign In and Sign Up buttons that redirect to WorkOS hosted authentication. Shows authenticated user info when logged in.",
+            "files": [
+                "app/page.tsx"
+            ]
+        },
+        {
+            "name": "OAuth Callback",
+            "description": "Handles OAuth redirect from WorkOS after successful authentication using AuthKit's handleAuth function.",
+            "files": [
+                "app/callback/route.ts"
+            ]
+        },
+        {
+            "name": "Session API",
+            "description": "GET endpoint that returns current authenticated user data or 401 if not authenticated. Used by child apps for session verification.",
+            "files": [
+                "app/api/me/route.ts"
+            ]
+        },
+        {
+            "name": "AuthKit Middleware",
+            "description": "Next.js middleware that handles session management, token refresh, and authentication enforcement using WorkOS AuthKit.",
+            "files": [
+                "middleware.ts"
+            ]
+        },
+        {
+            "name": "Convex User Sync",
+            "description": "Webhook handlers that sync WorkOS user lifecycle events (created, updated, deleted) to the application's users table in Convex.",
+            "files": [
+                "convex/auth.ts",
+                "convex/http.ts",
+                "convex/schema.ts"
+            ]
+        },
+        {
+            "name": "Auth Client SDK",
+            "description": "Shared SDK package with useUser hook and login/logout helpers for child apps to integrate with the auth service.",
+            "files": [
+                "packages/auth-client/src/index.ts"
+            ]
+        },
+        {
+            "name": "UI Components",
+            "description": "Reusable UI components including Matrix background, CRT overlay, and Neural cursor for the cybernetic aesthetic.",
+            "files": [
+                "components/ui/MatrixBackground.tsx",
+                "components/ui/CRTOverlay.tsx",
+                "components/ui/NeuralCursor.tsx"
+            ]
+        }
+    ]
+}

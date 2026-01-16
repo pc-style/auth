@@ -1,12 +1,14 @@
-import { httpRouter } from 'convex/server';
+import { httpRouter } from "convex/server";
+import { authKit, authKitEvent } from "./auth";
 
 const http = httpRouter();
 
-/**
- * WorkOS webhooks are handled by the @convex-dev/workos-authkit component
- * which automatically sets up the /workos/webhook endpoint.
- * 
- * This router can be extended for additional HTTP endpoints.
- */
+// Register WorkOS webhook routes at /workos/webhook
+// We pass the eventHandlers to ensure our custom user sync logic runs
+authKit.registerRoutes(http, {
+    webhook: {
+        eventHandlers: authKitEvent,
+    },
+});
 
 export default http;

@@ -1,0 +1,382 @@
+[
+  {
+    "id": "TC001",
+    "title": "Display Login Page for Unauthenticated Users",
+    "description": "Verify that the login page displays Sign In and Create Account links and no user info when the user is not authenticated.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page (app/page.tsx) while unauthenticated."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that Sign In and Create Account buttons/links are visible."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no authenticated user information is shown on the page."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Display Authenticated User Info on Login Page",
+    "description": "Verify that when a user is authenticated, the login page displays the user's information instead of Sign In and Create Account links.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate an authenticated session and navigate to the login page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that authenticated user info is displayed instead of Sign In and Create Account links."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "OAuth Callback Handles Successful Authentication",
+    "description": "Verify the OAuth callback endpoint correctly processes WorkOS authentication, sets session cookies securely, and redirects appropriately.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate a successful OAuth redirect to app/callback/route.ts with valid authentication codes."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that session cookies are set securely and correctly in the response."
+      },
+      {
+        "type": "assertion",
+        "description": "Validate that the user is redirected to the appropriate post-login page."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "OAuth Callback Handles Invalid Authentication Data",
+    "description": "Verify the OAuth callback endpoint handles invalid or expired authentication redirects gracefully, returning appropriate errors or redirects.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate an OAuth redirect with invalid or expired authentication codes."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the endpoint returns an error or redirects to the login page indicating authentication failure."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Session API Returns Authenticated User Data",
+    "description": "Verify the Session API endpoint returns correct authenticated user profile data with a 200 status when a valid session exists.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the GET /api/me endpoint with a valid authenticated session."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the returned response includes accurate user profile data."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response status is 200 OK."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Session API Returns 401 for Unauthenticated Requests",
+    "description": "Verify the Session API endpoint returns 401 Unauthorized status when no valid session is present.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the GET /api/me endpoint without authentication or with an expired session."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the response status is 401 Unauthorized."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "AuthKit Middleware Enforces Authentication",
+    "description": "Verify that the Next.js middleware enforces authentication by redirecting unauthenticated requests to the login page and allowing authenticated requests to proceed.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send a request through the middleware without authentication."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the request is redirected to the login page."
+      },
+      {
+        "type": "action",
+        "description": "Send a request through the middleware with a valid authenticated session."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the request proceeds without redirection."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "AuthKit Middleware Refreshes Expired Tokens Automatically",
+    "description": "Verify that when authentication tokens are expired, the middleware automatically refreshes tokens without interrupting the user session.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate an expired authentication token and send a request passing through the middleware."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the middleware refreshes the token and the request succeeds."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure no user interruption or error is returned."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Webhook Handler Syncs New User Creation to Convex Database",
+    "description": "Verify webhook handlers correctly process user creation events from WorkOS and insert corresponding records into the Convex users table.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send a simulated webhook event for user creation from WorkOS."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that a new user record is created in the Convex users table with accurate user data."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Webhook Handler Updates User Data on WorkOS Updates",
+    "description": "Verify webhook handlers accurately update user data in Convex when receiving user update events from WorkOS.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send a simulated webhook event for user update from WorkOS."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the existing user record in Convex is updated with the new information."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Webhook Handler Removes User on WorkOS Deletion",
+    "description": "Verify webhook handlers delete corresponding user records in Convex upon receiving user deletion events from WorkOS.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send a simulated webhook event for user deletion from WorkOS."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user record is removed from the Convex database."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Auth Client SDK useUser Hook Returns Correct User State",
+    "description": "Verify the useUser hook from the Auth Client SDK returns current user authentication state and profile data correctly in child applications.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Integrate the useUser hook in a child application component."
+      },
+      {
+        "type": "assertion",
+        "description": "Simulate authenticated session and verify hook returns accurate user data."
+      },
+      {
+        "type": "action",
+        "description": "Simulate unauthenticated state and verify hook returns null or unauthenticated state."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Auth Client SDK login Helper Redirects to Authentication",
+    "description": "Verify the login helper function redirects users to the WorkOS hosted authentication page properly when invoked.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call the login helper from the Auth Client SDK."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the browser is redirected to the expected WorkOS authentication URL."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Auth Client SDK logout Helper Clears Session and Redirects",
+    "description": "Verify the logout helper properly clears the user session and redirects to the unauthenticated login page.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Invoke the logout helper from the Auth Client SDK while authenticated."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user session is cleared and the user is redirected to the login page."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Matrix Background UI Component Renders Properly",
+    "description": "Verify the Matrix Background UI component renders correctly and visually matches the cybernetic style on supported pages.",
+    "category": "ui",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Render the MatrixBackground component within a page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the component renders without errors and matches expected visual styles."
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "CRT Overlay UI Component Renders Correctly",
+    "description": "Verify the CRT Overlay UI component renders properly and maintains consistent cybernetic UI theme.",
+    "category": "ui",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Render the CRTOverlay component within a page."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the CRT effect is displayed visually as designed."
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Neural Cursor UI Component Functions as Intended",
+    "description": "Verify the Neural Cursor UI component renders and animates correctly, enhancing user interaction with cybernetic style.",
+    "category": "ui",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Render the NeuralCursor component and move the cursor around the page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cursor displays the neural styling and animations without glitches."
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Session Persistence Across pcstyle.dev Subdomains",
+    "description": "Verify that session cookies enable persistent authentication across all pcstyle.dev subdomains.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Authenticate on one pcstyle.dev subdomain."
+      },
+      {
+        "type": "action",
+        "description": "Navigate to another subdomain of pcstyle.dev."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user session is recognized and user remains authenticated without requiring re-login."
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Sign Out Clears Session Accurately",
+    "description": "Verify that signing out clears the session cookies and returns the user to the unauthenticated login page.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Sign in successfully."
+      },
+      {
+        "type": "action",
+        "description": "Click the Sign Out button."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that session cookies are removed."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the user is redirected to the unauthenticated login page."
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Middleware Handles Invalid Tokens Gracefully",
+    "description": "Verify that the middleware detects invalid or tampered tokens and redirects to login without crashing.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send a request with an invalid or tampered token through the middleware."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the middleware redirects to the login page and no unhandled exceptions occur."
+      }
+    ]
+  }
+]

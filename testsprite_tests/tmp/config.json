@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "loginUser": "aaa",
+  "loginPassword": "ccc",
+  "executionArgs": {
+    "projectName": "auth",
+    "projectPath": "/Users/pcstyle/projects/pcstyledev/auth",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-6TJMfg4Qa_69Y56jszD2cu2w4fR1bYZLignyYb9K-KeEZg1t31_wraR4Prj4YIKGWQfa9hgr_NSoQwR_02Z6s6gAm7ijnOp8OHj1vV7Q18kv6mfcFOtq-q8k0C79gO-kICA"
+    }
+  },
+  "proxy": "http://90a47cb2-5a68-4f00-a007-cf773ea3a423:43qrdwKvsNS5hNzOAHI6oZETQGw0b4XH@tun.testsprite.com:8080"
+}
