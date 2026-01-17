@@ -1,0 +1,53 @@
+{
+    "name": "@pcstyle/auth",
+    "version": "0.1.0",
+    "description": "Unified authentication SDK for PCSTYLE services",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./middleware": {
+            "import": "./dist/middleware.mjs",
+            "require": "./dist/middleware.js",
+            "types": "./dist/middleware.d.ts"
+        },
+        "./convex": {
+            "import": "./dist/convex.mjs",
+            "require": "./dist/convex.js",
+            "types": "./dist/convex.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "@workos-inc/authkit-nextjs": "^2.13.0",
+        "next": ">=14.0.0",
+        "react": ">=18.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "tsup": "^8.0.0",
+        "typescript": "^5"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "keywords": [
+        "pcstyle",
+        "auth",
+        "workos",
+        "nextjs",
+        "authentication"
+    ],
+    "license": "MIT"
+}
