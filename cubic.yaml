@@ -1,27 +1,33 @@
+# yaml-language-server: $schema=https://cubic.dev/schema/cubic-repository-config.schema.json
+
 version: 1
+
 reviews:
   enabled: true
   sensitivity: high
   incremental_commits: true
   check_drafts: false
   architecture_diagrams: true
-  show_ai_feedback_buttons: true
   resolve_threads_when_addressed: true
-  custom_instructions: "SDK packages require deep type safety, comprehensive exports, and strict versioning."
+  custom_instructions: |
+    SDK Package focus: Strict type safety, clean API exports, and versioning discipline.
+
   ignore:
     files:
       - "**/node_modules/**"
       - "**/dist/**"
       - "**/*.lock*"
+
   custom_rules:
-    - name: "Code: Strict Types"
-      description: "NEVER use 'any'. Enforce explicit return types for all public API members."
-    - name: "SDK: Export Strategy"
-      description: "Ensure new features are properly exported in package.json and index.ts. Flag missing .d.ts files."
-    - name: "Aesthetics: Developer Experience"
-      description: "Ensure code is commented with JSDoc for better IDE support (Intellisense)."
+    - name: "STRICT_TYPES"
+      description: "No 'any' types or non-null assertions allowed. Ensure deep type safety and explicit return types for public APIs."
+    - name: "ESM_STANDARDS"
+      description: "Verify correct package exports and module definitions. Ensure the library satisfies both ESM and CJS consumers."
+
 pr_descriptions:
   generate: true
-  instructions: "Highlight breaking changes and new API capabilities."
+  instructions: |
+    Highlight API changes, breaking updates, and type improvements.
+
 issues:
   fix_with_cubic_buttons: true
