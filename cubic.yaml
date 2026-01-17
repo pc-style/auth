@@ -1,0 +1,27 @@
+version: 1
+reviews:
+  enabled: true
+  sensitivity: high
+  incremental_commits: true
+  check_drafts: false
+  architecture_diagrams: true
+  show_ai_feedback_buttons: true
+  resolve_threads_when_addressed: true
+  custom_instructions: "SDK packages require deep type safety, comprehensive exports, and strict versioning."
+  ignore:
+    files:
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/*.lock*"
+  custom_rules:
+    - name: "Code: Strict Types"
+      description: "NEVER use 'any'. Enforce explicit return types for all public API members."
+    - name: "SDK: Export Strategy"
+      description: "Ensure new features are properly exported in package.json and index.ts. Flag missing .d.ts files."
+    - name: "Aesthetics: Developer Experience"
+      description: "Ensure code is commented with JSDoc for better IDE support (Intellisense)."
+pr_descriptions:
+  generate: true
+  instructions: "Highlight breaking changes and new API capabilities."
+issues:
+  fix_with_cubic_buttons: true
